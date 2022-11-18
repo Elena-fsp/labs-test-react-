@@ -5,6 +5,16 @@ function getInformation<T>(content:T): T {
 }
 
 
+function calcAmount <T,U>(string: T): U {
+  let a;
+  if(typeof string === 'string') {
+     a = string.length;
+   
+  } 
+  return a;
+ 
+}
+console.log(calcAmount('calcAmount'));
 
 
 
