@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import { Link } from 'react-router-dom';
 
 function ComicsList() {
   const [error, setError] = useState(null);
@@ -7,13 +8,12 @@ function ComicsList() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch("https://gateway.marvel.com:443/v1/public/characters?limit=9&offset=210&apikey=66f5faa27e11090543b0cd2fe0603d1b")
+    fetch("https://gateway.marvel.com:443/v1/public/comics?limit=5&apikey=66f5faa27e11090543b0cd2fe0603d1b")
       .then(res => res.json())
       .then(
         (result) => {
           setIsLoaded(true);
           setItems(result.data.results);
-          console.log(result.data.results);
         },
         (error) => {
           setIsLoaded(true);
@@ -31,7 +31,7 @@ function ComicsList() {
       <ul>
         {items.map(item => (
           <li key={item.id}>
-            <a href="/"> {item.name} </a>
+            <Link to={`/${item.id}`}> {item.title} </Link>
           </li>
         ))}
       </ul>
